@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import ProductLine from "./ProductLine";
+import Category from "./Category";
 
 function App() {
   const PRODUCTS_DATA = [
@@ -30,14 +31,21 @@ function App() {
   return (
     <div className="App">
       <h1>Menu</h1>
-      {PRODUCTS_DATA.map((c) => (
+      {PRODUCTS_DATA.map((category) => (
+        <Category category={category.name}>
+          {category.products.map((product) => (
+            <ProductLine product={product} />
+          ))}
+        </Category>
+      ))}
+      {/* {PRODUCTS_DATA.map((c) => (
         <div>
           <h2>{c.name}</h2>
           {c.products.map((p) => (
             <ProductLine key={p.name} product={p} />
           ))}
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
