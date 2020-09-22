@@ -30,8 +30,13 @@ function App() {
   return (
     <div className="App">
       <h1>Menu</h1>
-      {PRODUCTS_DATA.map((p) => (
-        <ProductLine key={p.name} product={p} />
+      {PRODUCTS_DATA.map((c) => (
+        <div>
+          <h2>{c.name}</h2>
+          {c.products.map((p) => (
+            <ProductLine key={p.name} product={p} />
+          ))}
+        </div>
       ))}
     </div>
   );
