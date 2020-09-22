@@ -5,15 +5,16 @@ export const PRODUCTS_DATA = [
       {
         name: "fris",
         products: [
-          { name: "cola", price: 2 },
-          { name: "water", price: 2 },
+          { id: 0, name: "cola", price: 2 },
+          { id: 1, name: "water", price: 2 },
         ],
       },
       {
         name: "alcohol",
         products: [
-          { name: "bier", price: 2, size: 25 },
-          { name: "wijn", price: 4 },
+          { id: 2, name: "bier", price: 2, size: 25 },
+          { id: 3, name: "bier", price: 2.4, size: 33 },
+          { id: 4, name: "wijn", price: 4 },
         ],
       },
     ],
@@ -26,18 +27,18 @@ export const PRODUCTS_DATA = [
         name: "hapjes",
         note: "deze kan je altijd bestellen",
         products: [
-          { name: "chips", price: 1, note: "paprika of zout" },
-          { name: "olijven", price: 2, note: "mix zwart en groen" },
-          { name: "kaas", price: 4, note: "mix jonge en oude blokjes" },
-          { name: "salami", price: 3 },
+          { id: 5, name: "chips", price: 1, note: "paprika of zout" },
+          { id: 6, name: "olijven", price: 2, note: "mix zwart en groen" },
+          { id: 7, name: "kaas", price: 4, note: "mix jonge en oude blokjes" },
+          { id: 8, name: "salami", price: 3 },
         ],
       },
       {
         name: "warm",
         note: "niet na 22:00",
         products: [
-          { name: "hamburger", price: 4 },
-          { name: "pizza", price: 4 },
+          { id: 9, name: "hamburger", price: 4 },
+          { id: 10, name: "pizza", price: 4 },
         ],
       },
     ],

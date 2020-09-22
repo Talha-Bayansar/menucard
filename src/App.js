@@ -10,13 +10,10 @@ function App() {
     <div className="app">
       <h1>Menu</h1>
       {PRODUCTS_DATA.map((category) => (
-        <Category category={category}>
+        <Category key={category.name} category={category}>
           {category.subcategories.map((sc) => (
-            <Subcategory subCategory={sc} />
+            <Subcategory key={sc.name} subCategory={sc} />
           ))}
-          {/* {category.products.map((product) => (
-            <ProductLine product={product} />
-          ))} */}
         </Category>
       ))}
     </div>
