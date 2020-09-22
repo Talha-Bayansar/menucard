@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import ProductLine from "./Components/ProductLine";
 import Category from "./Components/Category";
 import { PRODUCTS_DATA } from "./data/products_data";
 import Subcategory from "./Components/Subcategory";
