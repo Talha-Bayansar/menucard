@@ -1,4 +1,5 @@
 import React from "react";
+import Note from "./Note";
 
 /** @return {null} */
 function ProductLine(props) {
@@ -13,7 +14,9 @@ function ProductLine(props) {
         </div>
         <div>{product.price}&euro;</div>
       </div>
-      {product.note && <div className="note productNote">{product.note}</div>}
+      {product.note && (
+        <Note className="note productNote" note={product.note} />
+      )}
     </>
   );
 }

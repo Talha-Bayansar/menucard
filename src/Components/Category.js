@@ -1,4 +1,5 @@
 import React from "react";
+import Note from "./Note";
 
 function Category(props) {
   const { category } = props;
@@ -6,7 +7,7 @@ function Category(props) {
     <div>
       <h2>{category.name}</h2>
       {category.note && (
-        <div className="note categoryNote">{category.note}</div>
+        <Note className="note categroyNote" note={category.note} />
       )}
       {props.children}
     </div>
