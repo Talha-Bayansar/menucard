@@ -4,7 +4,8 @@ function ProductLine(props) {
   const { product } = props;
   return (
     <div className="productLine">
-      {product.name}: {product.price}
+      <div>{product.name}</div>
+      <div>{product.price}&euro;</div>
     </div>
   );
 }
