@@ -2,3 +2,11 @@ body {
   font-size: calc(10px + 2vmin);
   padding: 0 2em;
 }
+
+.productLine {
+  display: flex;
+}
+
+.productLine div {
+  flex: 1;
+}
