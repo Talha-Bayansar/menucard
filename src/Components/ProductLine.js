@@ -10,7 +10,9 @@ function ProductLine(props) {
       <div className="productLine">
         <div>
           {product.name}{" "}
-          {product.size && <span className="productSize">{product.size}</span>}
+          {product.size && (
+            <span className="productSize">{product.size}CL</span>
+          )}
         </div>
         <div>{product.price}&euro;</div>
       </div>
