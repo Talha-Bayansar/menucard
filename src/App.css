@@ -7,14 +7,6 @@ body {
   border-bottom: 1px solid black;
 }
 
-.productLine {
-  display: flex;
-}
-
-.productLine div {
-  flex: 1;
-}
-
 .note {
   color: #a21212;
   font-size: smaller;

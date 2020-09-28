@@ -7,7 +7,7 @@ function Subcategory(props) {
   return (
     <div>
       <h2>{subCategory.name}</h2>
-      <Note className="note categorNote" note={subCategory.note} />
+      <Note className="note categoryNote" note={subCategory.note} />
       {subCategory.products.map((p) => (
         <ProductLine key={p.id} product={p} />
       ))}

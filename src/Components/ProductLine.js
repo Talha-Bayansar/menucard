@@ -1,5 +1,14 @@
 import React from "react";
 import Note from "./Note";
+import styled from "@emotion/styled";
+
+const StyledProductLine = styled.div`
+  display: flex;
+`;
+
+const StyledDiv = styled.div`
+  flex: 1;
+`;
 
 /** @return {null} */
 function ProductLine(props) {
@@ -7,15 +16,15 @@ function ProductLine(props) {
   if (!product.name) return null;
   return (
     <>
-      <div className="productLine">
-        <div>
+      <StyledProductLine className="productLine">
+        <StyledDiv>
           {product.name}{" "}
           {product.size && (
             <span className="productSize">-{product.size}CL</span>
           )}
-        </div>
-        <div>{product.price}&euro;</div>
-      </div>
+        </StyledDiv>
+        <StyledDiv>{product.price}&euro;</StyledDiv>
+      </StyledProductLine>
       {product.note && (
         <Note className="note productNote" note={product.note} />
       )}
