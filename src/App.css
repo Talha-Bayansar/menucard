@@ -1,12 +1,8 @@
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
 body {
   font-size: calc(10px + 2vmin);
-  padding: 2rem 3rem;
-}
-
-.productNote {
-  padding: 0 1.5em 0.5em 0;
-}
-
-.productSize {
-  font-size: 0.6em;
 }

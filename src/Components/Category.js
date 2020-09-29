@@ -8,7 +8,7 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledCategoryNote = styled(Note)`
-  padding: 0 0 0.5rem 0;
+  padding: 0 0 0.5em 0;
   background-color: red;
 `;
 

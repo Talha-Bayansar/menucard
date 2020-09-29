@@ -10,6 +10,14 @@ const StyledProductLine = styled.div`
   }
 `;
 
+const StyledSizeSpan = styled.span`
+  font-size: 0.6em;
+`;
+
+const StyledProductNote = styled(Note)`
+  padding: 0 1.5em 0.5em 0;
+`;
+
 /** @return {null} */
 function ProductLine(props) {
   const { product } = props;
@@ -19,14 +27,12 @@ function ProductLine(props) {
       <StyledProductLine className="productLine">
         <div>
           {product.name}{" "}
-          {product.size && (
-            <span className="productSize">-{product.size}CL</span>
-          )}
+          {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
         </div>
         <div>{product.price}&euro;</div>
       </StyledProductLine>
       {product.note && (
-        <Note className="note productNote" note={product.note} />
+        <StyledProductNote className="note productNote" note={product.note} />
       )}
     </>
   );
