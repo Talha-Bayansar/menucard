@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "normalize.css";
 import "./App.css";
 import Category from "./Components/Category";
@@ -26,9 +26,14 @@ function App() {
     return bool;
   };
 
+  const [counter, setCounter] = useState(0);
+
   return (
     <StyledApp className="app">
       <Navbar name="Menu" />
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
+      <button onClick={() => setCounter(counter - 1)}>Decrement</button>
+      {counter}
       {PRODUCTS_DATA.map((category) => (
         <Category key={category.name} category={category}>
           {category.subcategories.map((sc) => (

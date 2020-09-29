@@ -29,7 +29,7 @@ const StyledProductNote = styled(Note)`
   padding: 0 1.5em 0.5em 0;
 `;
 
-function isActive() {}
+function isActive(product) {}
 
 /** @return {null} */
 function ProductLine(props) {
