@@ -31,6 +31,8 @@ function App() {
     } else {
       newArray = [...favorites, product];
     }
+    console.log(newArray);
+    console.log(isFavorite(product));
     setFavorites(newArray);
   };
 
@@ -64,6 +66,7 @@ function App() {
                   key={p.id}
                   product={p}
                   isFavorite={isFavorite(p)}
+                  toggle={() => toggleProductIsFavorite(p)}
                 />
               ))}
             </Subcategory>
