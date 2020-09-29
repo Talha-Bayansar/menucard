@@ -1,4 +1,5 @@
 import React from "react";
+import "normalize.css";
 import "./App.css";
 import Category from "./Components/Category";
 import { PRODUCTS_DATA } from "./data/products_data";
