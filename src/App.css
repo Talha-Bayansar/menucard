@@ -3,19 +3,6 @@ body {
   padding: 2rem 3rem;
 }
 
-.app > h1 {
-  border-bottom: 1px solid black;
-}
-
-.note {
-  color: #a21212;
-  font-size: smaller;
-}
-
-.categoryNote {
-  padding: 0 0 0.5em 0;
-}
-
 .productNote {
   padding: 0 1.5em 0.5em 0;
 }
