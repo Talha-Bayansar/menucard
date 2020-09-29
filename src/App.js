@@ -13,10 +13,8 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const favorites = [
-    PRODUCTS_DATA[0].subcategories[0].products[0],
-    PRODUCTS_DATA[0].subcategories[0].products[1],
-  ];
+  const [counter, setCounter] = useState(0);
+  const [favorites, setFavorites] = useState([]);
 
   const isFavorite = (product) => {
     let bool = false;
@@ -26,7 +24,15 @@ function App() {
     return bool;
   };
 
-  const [counter, setCounter] = useState(0);
+  const toggleProductIsFavorite = (product) => {
+    let newArray = favorites;
+    if (isFavorite(product)) {
+      newArray = newArray.filter((e) => e.id !== product.id);
+    } else {
+      newArray = [...favorites, product];
+    }
+    setFavorites(newArray);
+  };
 
   return (
     <StyledApp className="app">
@@ -34,6 +40,21 @@ function App() {
       <button onClick={() => setCounter(counter + 1)}>Increment</button>
       <button onClick={() => setCounter(counter - 1)}>Decrement</button>
       {counter}
+      <hr />
+      <button
+        onClick={() => {
+          setFavorites([PRODUCTS_DATA[0].subcategories[0].products[0]]);
+        }}
+      >
+        Favorite
+      </button>
+      <button
+        onClick={() =>
+          toggleProductIsFavorite(PRODUCTS_DATA[0].subcategories[0].products[0])
+        }
+      >
+        Toggle Favorite
+      </button>
       {PRODUCTS_DATA.map((category) => (
         <Category key={category.name} category={category}>
           {category.subcategories.map((sc) => (
