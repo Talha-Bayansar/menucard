@@ -1,6 +1,5 @@
 import React from "react";
 import Note from "./Note";
-import ProductLine from "./ProductLine";
 
 function Subcategory(props) {
   const { subCategory } = props;
@@ -8,9 +7,7 @@ function Subcategory(props) {
     <div>
       <h2>{subCategory.name}</h2>
       <Note className="note categoryNote" note={subCategory.note} />
-      {subCategory.products.map((p) => (
-        <ProductLine key={p.id} product={p} />
-      ))}
+      {props.children}
     </div>
   );
 }

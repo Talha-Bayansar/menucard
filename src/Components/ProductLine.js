@@ -18,6 +18,7 @@ const StyledProductPrice = styled.div`
 
 const StyledProductName = styled.div`
   flex: 6;
+  color: ${(props) => (props.isFavorite ? "red" : "black")};
 `;
 
 const StyledSizeSpan = styled.span`
@@ -32,13 +33,13 @@ function isActive() {}
 
 /** @return {null} */
 function ProductLine(props) {
-  const { product } = props;
+  const { product, isFavorite } = props;
   product.price = (Math.round(product.price * 100) / 100).toFixed(2);
   if (!product.name) return null;
   return (
     <>
       <StyledProductLine isActive={isActive(product)}>
-        <StyledProductName>
+        <StyledProductName isFavorite={isFavorite}>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
         </StyledProductName>
