@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 const StyledProductLine = styled.div`
   display: flex;
+  color: ${(props) => (props.isActive ? "green" : "black")};
 
   & div {
     flex: 2;
@@ -27,6 +28,8 @@ const StyledProductNote = styled(Note)`
   padding: 0 1.5em 0.5em 0;
 `;
 
+function isActive() {}
+
 /** @return {null} */
 function ProductLine(props) {
   const { product } = props;
@@ -34,7 +37,7 @@ function ProductLine(props) {
   if (!product.name) return null;
   return (
     <>
-      <StyledProductLine className="productLine">
+      <StyledProductLine isActive={isActive(product)}>
         <StyledProductName>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
