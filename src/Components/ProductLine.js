@@ -6,8 +6,17 @@ const StyledProductLine = styled.div`
   display: flex;
 
   & div {
-    flex: 1;
+    flex: 2;
   }
+`;
+
+const StyledProductPrice = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const StyledProductName = styled.div`
+  flex: 6;
 `;
 
 const StyledSizeSpan = styled.span`
@@ -21,15 +30,16 @@ const StyledProductNote = styled(Note)`
 /** @return {null} */
 function ProductLine(props) {
   const { product } = props;
+  product.price = (Math.round(product.price * 100) / 100).toFixed(2);
   if (!product.name) return null;
   return (
     <>
       <StyledProductLine className="productLine">
-        <div>
+        <StyledProductName>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
-        </div>
-        <div>{product.price}&euro;</div>
+        </StyledProductName>
+        <StyledProductPrice>{product.price}&euro;</StyledProductPrice>
       </StyledProductLine>
       {product.note && (
         <StyledProductNote className="note productNote" note={product.note} />
