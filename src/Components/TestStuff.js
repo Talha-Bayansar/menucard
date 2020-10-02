@@ -13,11 +13,11 @@ const StyledVisibility = styled.div`
 `;
 
 const StyledButtonOpen = styled.button`
-  /* display: ${(props) => (props.visibility ? "block" : "none")}; */
+  display: ${(props) => (!props.visibility ? "block" : "none")};
 `;
 
 const StyledButtonClose = styled.button`
-  /* display: ${(props) => (props.visibility ? "block" : "none")}; */
+  display: ${(props) => (props.visibility ? "block" : "none")};
 `;
 
 function TestStuff(props) {
@@ -28,10 +28,16 @@ function TestStuff(props) {
 
   return (
     <StyledTestStuff>
-      <StyledButtonOpen onClick={() => setVisible(!visible)}>
+      <StyledButtonOpen
+        visibility={visible}
+        onClick={() => setVisible(!visible)}
+      >
         TestStuff
       </StyledButtonOpen>
-      <StyledButtonClose onClick={() => setVisible(!visible)}>
+      <StyledButtonClose
+        visibility={visible}
+        onClick={() => setVisible(!visible)}
+      >
         Close
       </StyledButtonClose>
       <StyledVisibility visibility={visible}>
