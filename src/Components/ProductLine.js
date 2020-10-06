@@ -35,7 +35,6 @@ function isActive(product) {}
 /** @return {null} */
 function ProductLine(props) {
   const { product, isFavorite, toggle } = props;
-  product.price = (Math.round(product.price * 100) / 100).toFixed(2);
   if (!product.name) return null;
   return (
     <>
@@ -44,7 +43,9 @@ function ProductLine(props) {
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
         </StyledProductName>
-        <StyledProductPrice>{product.price}&euro;</StyledProductPrice>
+        <StyledProductPrice>
+          {product.price.toFixed(2)}&euro;
+        </StyledProductPrice>
       </StyledProductLine>
       {product.note && (
         <StyledProductNote className="note productNote" note={product.note} />

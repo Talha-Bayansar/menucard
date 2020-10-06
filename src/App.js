@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "normalize.css";
 import "./App.css";
-import Category from "./Components/Category";
+import Category from "./components/Category";
 import { PRODUCTS_DATA } from "./data/products_data";
-import Subcategory from "./Components/Subcategory";
-import Navbar from "./Components/Navbar";
+import Subcategory from "./components/Subcategory";
+import Navbar from "./components/Navbar";
 import styled from "@emotion/styled";
-import ProductLine from "./Components/ProductLine";
-import TestStuff from "./Components/TestStuff";
+import ProductLine from "./components/ProductLine";
+import TestStuff from "./components/TestStuff";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -17,11 +17,7 @@ function App() {
   const [favorites, setFavorites] = useState([]);
 
   const isFavorite = (product) => {
-    let bool = false;
-    favorites.forEach((f) => {
-      if (f.id === product.id) bool = true;
-    });
-    return bool;
+    return favorites.find((f) => f.id === product.id);
   };
 
   const toggleProductIsFavorite = (product) => {
