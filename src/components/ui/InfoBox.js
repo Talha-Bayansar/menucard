@@ -7,12 +7,23 @@ const StyledInfoBox = styled.div`
   position: fixed;
   left: 0;
   border-radius: 1rem;
+  padding: 2rem;
   width: 100vw;
   height: 90vh;
   margin-top: 1rem;
   transform: ${(props) =>
     props.visible ? "translateY(0%)" : "translateY(100%)"};
   transition: transform 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
 `;
 
 const StyledOverlay = styled.div`
@@ -26,27 +37,24 @@ const StyledOverlay = styled.div`
 `;
 
 function InfoBox(props) {
-  const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(true);
-  let icon = "+";
-  if (isInfoBoxOpen) {
-    icon = "x";
-  } else {
-    icon = "+";
-  }
+  const { isInfoBoxOpen, setIsInfoBoxOpen } = props;
+  let icon = "x";
   return (
     <>
-      <button
-        onClick={() => {
-          setIsInfoBoxOpen(!isInfoBoxOpen);
-        }}
-      >
-        {icon}
-      </button>
       <StyledOverlay
         isInfoBoxOpen={isInfoBoxOpen}
         onClick={() => setIsInfoBoxOpen(false)}
       />
-      <StyledInfoBox visible={isInfoBoxOpen}>{props.children}</StyledInfoBox>
+      <StyledInfoBox visible={isInfoBoxOpen}>
+        {props.children}
+        <StyledButton
+          onClick={() => {
+            setIsInfoBoxOpen(!isInfoBoxOpen);
+          }}
+        >
+          {icon}
+        </StyledButton>
+      </StyledInfoBox>
     </>
   );
 }

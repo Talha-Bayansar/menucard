@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PRODUCTS_DATA } from "../data/products_data";
+import { PRODUCTS_DATA } from "../../data/products_data";
 import styled from "@emotion/styled";
 
 const StyledTestStuff = styled.div`

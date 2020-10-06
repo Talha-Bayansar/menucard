@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "normalize.css";
 import "./App.css";
-import Category from "./components/Category";
 import { PRODUCTS_DATA } from "./data/products_data";
-import Subcategory from "./components/Subcategory";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/product/Navbar";
 import styled from "@emotion/styled";
-import ProductLine from "./components/ProductLine";
-import InfoBox from "./components/InfoBox";
+import ProductLine from "./components/product/ProductLine";
+import InfoBox from "./components/ui/InfoBox";
+import MenuCardPage from "./components/product/MenuCardPage";
+import FavoritesInfoBox from "./components/product/FavoritesInfoBox";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -15,6 +15,7 @@ const StyledApp = styled.div`
 
 function App() {
   const [favorites, setFavorites] = useState([]);
+  const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
 
   const isFavorite = (product) => {
     return favorites.find((f) => f.id === product.id);
@@ -32,30 +33,27 @@ function App() {
 
   return (
     <StyledApp className="app">
-      <Navbar name="Menu" />
-      <InfoBox>
-        <h2>Je favorieten</h2>
+      <Navbar
+        setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+        name="Menu"
+      />
+      <FavoritesInfoBox
+        isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
+        setFavoritesIsInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+      >
         <div>
-          {favorites.length !== 0
-            ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
-            : "Je hebt nog geen favorieten."}
+          <h2>Je favorieten</h2>
+          <div>
+            {favorites.length !== 0
+              ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
+              : "Je hebt nog geen favorieten."}
+          </div>
         </div>
-      </InfoBox>
-      {PRODUCTS_DATA.map((category) => (
-        <Category key={category.name} category={category}>
-          {category.subcategories.map((sc) => (
-            <Subcategory key={sc.name} subCategory={sc}>
-              {sc.products.map((p) => (
-                <ProductLine
-                  key={p.id}
-                  product={p}
-                  toggle={() => toggleProductIsFavorite(p)}
-                />
-              ))}
-            </Subcategory>
-          ))}
-        </Category>
-      ))}
+      </FavoritesInfoBox>
+      <MenuCardPage
+        PRODUCTS_DATA={PRODUCTS_DATA}
+        toggleProductIsFavorite={toggleProductIsFavorite}
+      />
     </StyledApp>
   );
 }

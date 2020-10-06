@@ -23,10 +23,19 @@ const StyledName = styled.a`
   }
 `;
 
+const StyledButton = styled.button`
+  position: absolute;
+  right: 2rem;
+`;
+
 function Navbar(props) {
+  const { setIsFavoritesInfoBoxOpen } = props;
   return (
     <StyledNavbar className={props.className}>
       <StyledName href="#">{props.name}</StyledName>
+      <StyledButton
+        onClick={() => setIsFavoritesInfoBoxOpen(true)}
+      ></StyledButton>
     </StyledNavbar>
   );
 }
