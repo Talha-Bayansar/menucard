@@ -49,7 +49,6 @@ function App() {
                 <ProductLine
                   key={p.id}
                   product={p}
-                  isFavorite={isFavorite(p)}
                   toggle={() => toggleProductIsFavorite(p)}
                 />
               ))}

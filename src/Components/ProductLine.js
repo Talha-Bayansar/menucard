@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 
 const StyledProductLine = styled.div`
   display: flex;
-  color: ${(props) => (props.isActive ? "green" : "black")};
   cursor: pointer;
 
   & div {
@@ -19,7 +18,6 @@ const StyledProductPrice = styled.div`
 
 const StyledProductName = styled.div`
   flex: 6;
-  color: ${(props) => (props.isFavorite ? "red" : "black")};
 `;
 
 const StyledSizeSpan = styled.span`
@@ -30,16 +28,14 @@ const StyledProductNote = styled(Note)`
   padding: 0 1.5em 0.5em 0;
 `;
 
-function isActive(product) {}
-
 /** @return {null} */
 function ProductLine(props) {
-  const { product, isFavorite, toggle } = props;
+  const { product, toggle } = props;
   if (!product.name) return null;
   return (
     <>
-      <StyledProductLine onClick={toggle} isActive={isActive(product)}>
-        <StyledProductName isFavorite={isFavorite}>
+      <StyledProductLine onClick={toggle}>
+        <StyledProductName>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
         </StyledProductName>
