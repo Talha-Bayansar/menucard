@@ -7,7 +7,7 @@ import Subcategory from "./components/Subcategory";
 import Navbar from "./components/Navbar";
 import styled from "@emotion/styled";
 import ProductLine from "./components/ProductLine";
-import TestStuff from "./components/TestStuff";
+import InfoBox from "./components/InfoBox";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -33,10 +33,14 @@ function App() {
   return (
     <StyledApp className="app">
       <Navbar name="Menu" />
-      <TestStuff
-        toggleProductIsFavorite={toggleProductIsFavorite}
-        setFavorites={setFavorites}
-      />
+      <InfoBox>
+        <h2>Je favorieten</h2>
+        <div>
+          {favorites.length !== 0
+            ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
+            : "Je hebt nog geen favorieten."}
+        </div>
+      </InfoBox>
       {PRODUCTS_DATA.map((category) => (
         <Category key={category.name} category={category}>
           {category.subcategories.map((sc) => (
