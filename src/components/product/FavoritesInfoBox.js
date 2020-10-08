@@ -2,12 +2,12 @@ import React from "react";
 import InfoBox from "../ui/InfoBox";
 
 function FavoritesInfoBox(props) {
-  const { isFavoritesInfoBoxOpen, setFavoritesIsInfoBoxOpen } = props;
+  const { isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen } = props;
 
   return (
     <InfoBox
       isInfoBoxOpen={isFavoritesInfoBoxOpen}
-      setIsInfoBoxOpen={setFavoritesIsInfoBoxOpen}
+      closeInfoBox={() => setIsFavoritesInfoBoxOpen(false)}
     >
       {props.children}
     </InfoBox>

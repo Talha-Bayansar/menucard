@@ -5,9 +5,10 @@ import { PRODUCTS_DATA } from "./data/products_data";
 import Navbar from "./components/product/Navbar";
 import styled from "@emotion/styled";
 import ProductLine from "./components/product/ProductLine";
-import InfoBox from "./components/ui/InfoBox";
 import MenuCardPage from "./components/product/MenuCardPage";
 import FavoritesInfoBox from "./components/product/FavoritesInfoBox";
+import { ThemeProvider } from "emotion-theming";
+import { theme } from "./theme";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -32,29 +33,31 @@ function App() {
   };
 
   return (
-    <StyledApp className="app">
-      <Navbar
-        setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
-        name="Menu"
-      />
-      <FavoritesInfoBox
-        isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
-        setFavoritesIsInfoBoxOpen={setIsFavoritesInfoBoxOpen}
-      >
-        <div>
-          <h2>Je favorieten</h2>
+    <ThemeProvider>
+      <StyledApp className="app">
+        <Navbar
+          setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+          name="Menu"
+        />
+        <FavoritesInfoBox
+          isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
+          setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+        >
           <div>
-            {favorites.length !== 0
-              ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
-              : "Je hebt nog geen favorieten."}
+            <h2>Je favorieten</h2>
+            <div>
+              {favorites.length !== 0
+                ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
+                : "Je hebt nog geen favorieten."}
+            </div>
           </div>
-        </div>
-      </FavoritesInfoBox>
-      <MenuCardPage
-        PRODUCTS_DATA={PRODUCTS_DATA}
-        toggleProductIsFavorite={toggleProductIsFavorite}
-      />
-    </StyledApp>
+        </FavoritesInfoBox>
+        <MenuCardPage
+          PRODUCTS_DATA={PRODUCTS_DATA}
+          toggleProductIsFavorite={toggleProductIsFavorite}
+        />
+      </StyledApp>
+    </ThemeProvider>
   );
 }
 

@@ -14,9 +14,6 @@ const StyledInfoBox = styled.div`
   transform: ${(props) =>
     props.visible ? "translateY(0%)" : "translateY(100%)"};
   transition: transform 0.3s ease-in-out;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
 `;
 
 const StyledButton = styled.button`
@@ -24,6 +21,14 @@ const StyledButton = styled.button`
   background-color: white;
   cursor: pointer;
   outline: none;
+  position: absolute;
+  right: 3rem;
+  top: 4.5rem;
+
+  &:hover {
+    color: red;
+    transition: color 0.3s ease-in-out;
+  }
 `;
 
 const StyledOverlay = styled.div`
@@ -37,23 +42,14 @@ const StyledOverlay = styled.div`
 `;
 
 function InfoBox(props) {
-  const { isInfoBoxOpen, setIsInfoBoxOpen } = props;
+  const { isInfoBoxOpen, closeInfoBox } = props;
   let icon = "x";
   return (
     <>
-      <StyledOverlay
-        isInfoBoxOpen={isInfoBoxOpen}
-        onClick={() => setIsInfoBoxOpen(false)}
-      />
+      <StyledOverlay isInfoBoxOpen={isInfoBoxOpen} onClick={closeInfoBox} />
       <StyledInfoBox visible={isInfoBoxOpen}>
         {props.children}
-        <StyledButton
-          onClick={() => {
-            setIsInfoBoxOpen(!isInfoBoxOpen);
-          }}
-        >
-          {icon}
-        </StyledButton>
+        <StyledButton onClick={closeInfoBox}>{icon}</StyledButton>
       </StyledInfoBox>
     </>
   );

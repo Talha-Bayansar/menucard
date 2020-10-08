@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Favorite } from "@material-ui/icons";
 
 const StyledNavbar = styled.div`
   position: fixed;
@@ -26,6 +27,16 @@ const StyledName = styled.a`
 const StyledButton = styled.button`
   position: absolute;
   right: 2rem;
+  color: white;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    color: red;
+    transition: color 0.3s ease-in-out;
+  }
 `;
 
 function Navbar(props) {
@@ -33,9 +44,9 @@ function Navbar(props) {
   return (
     <StyledNavbar className={props.className}>
       <StyledName href="#">{props.name}</StyledName>
-      <StyledButton
-        onClick={() => setIsFavoritesInfoBoxOpen(true)}
-      ></StyledButton>
+      <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>
+        <Favorite />
+      </StyledButton>
     </StyledNavbar>
   );
 }
