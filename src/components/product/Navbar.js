@@ -7,8 +7,8 @@ const StyledNavbar = styled.div`
   top: 0;
   left: 0;
   height: 10vh;
-  background-color: black;
-  color: white;
+  background-color: ${(props) => props.theme.colors.primaryDark};
+  color: ${(props) => props.theme.colors.primaryLight};
   display: flex;
   align-items: center;
   justify-content: center;

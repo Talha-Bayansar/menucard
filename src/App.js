@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <StyledApp className="app">
         <Navbar
           setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
