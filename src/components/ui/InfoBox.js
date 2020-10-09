@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 
 const StyledInfoBox = styled.div`
@@ -34,7 +34,7 @@ const StyledButton = styled.button`
 const StyledOverlay = styled.div`
   position: fixed;
   left: 0;
-  top: 0;
+  top: 10vh;
   width: 100%;
   height: 100%;
   background-color: transparent;
@@ -48,8 +48,8 @@ function InfoBox(props) {
     <>
       <StyledOverlay isInfoBoxOpen={isInfoBoxOpen} onClick={closeInfoBox} />
       <StyledInfoBox visible={isInfoBoxOpen}>
-        {props.children}
         <StyledButton onClick={closeInfoBox}>{icon}</StyledButton>
+        {props.children}
       </StyledInfoBox>
     </>
   );
