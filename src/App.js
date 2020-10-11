@@ -40,6 +40,7 @@ function App() {
         <Navbar
           setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
           name="Menu"
+          PRODUCTS_DATA={PRODUCTS_DATA}
         />
         <FavoritesInfoBox
           favorites={favorites}

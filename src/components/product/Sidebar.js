@@ -41,14 +41,12 @@ const StyledButton = styled.button`
 
 function Sidebar(props) {
 
-    const {isActive, setIsActive} = props;
+    const {isActive, setIsActive, PRODUCTS_DATA} = props;
 
     return (
         <StyledSidebar visible={isActive}>
             <StyledButton onClick={() => setIsActive(!isActive)}>x</StyledButton>
-            <a href="#">category1</a>
-            <a href="#">category2</a>
-            <a href="#">category3</a>
+            {PRODUCTS_DATA.map(c => <a href="#">{c.name}</a>)}
         </StyledSidebar>
     )
 }

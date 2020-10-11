@@ -49,11 +49,11 @@ const StyledMenu = styled(Menu)`
 `;
 
 function Navbar(props) {
-  const { setIsFavoritesInfoBoxOpen } = props;
+  const { setIsFavoritesInfoBoxOpen, PRODUCTS_DATA } = props;
   const [isActive, setIsActive] = useState(false);
   return (
     <StyledNavbar className={props.className}>
-      <Sidebar isActive={isActive} setIsActive={setIsActive} />
+      <Sidebar PRODUCTS_DATA={PRODUCTS_DATA} isActive={isActive} setIsActive={setIsActive} />
       <StyledMenu onClick={() => setIsActive(!isActive)} />
       <StyledName href="#">{props.name}</StyledName>
       <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>
