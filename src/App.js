@@ -16,12 +16,12 @@ const StyledApp = styled.div`
 `;
 
 function App() {
-  const [favorites, setFavorites] = useState([PRODUCTS_DATA[0].subcategories[0].products[0]]);
+  const [favorites, setFavorites] = useState([]);
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
 
   const isFavorite = (product) => {
-    return favorites.find((f) => f.id === product.id);
+    return product && favorites.find((f) => f.id === product.id);
   };
 
   const toggleProductIsFavorite = (product) => {
@@ -47,11 +47,11 @@ function App() {
           setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
           setActiveProduct={setActiveProduct}
         />
-        <ProductInfoBox activeProduct={activeProduct} isInfoBoxOpen={activeProduct!=null} closeInfoBox={() => setActiveProduct(null)} />
+        <ProductInfoBox isFavorite={isFavorite} toggleProductIsFavorite={toggleProductIsFavorite} activeProduct={activeProduct} isInfoBoxOpen={activeProduct!=null} closeInfoBox={() => setActiveProduct(null)} />
         <MenuCardPage
           PRODUCTS_DATA={PRODUCTS_DATA}
-          toggleProductIsFavorite={toggleProductIsFavorite}
           setActiveProduct={setActiveProduct}
+          isFavorite={isFavorite}
         />
       </StyledApp>
     </ThemeProvider>

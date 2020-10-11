@@ -6,10 +6,11 @@ const StyledInfoBox = styled.div`
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
   position: fixed;
   left: 0;
-  border-radius: 1rem;
+  bottom: 0;
+  border-radius: 1rem 1rem 0 0;
   padding: 2rem;
   width: 100vw;
-  height: 90vh;
+  height: 80vh;
   margin-top: 1rem;
   transform: ${(props) =>
     props.visible ? "translateY(0%)" : "translateY(100%)"};

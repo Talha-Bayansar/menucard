@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Favorite } from "@material-ui/icons";
+import { Favorite, Menu } from "@material-ui/icons";
+import Sidebar from "./Sidebar";
 
 const StyledNavbar = styled.div`
   position: fixed;
@@ -39,10 +40,14 @@ const StyledButton = styled.button`
   }
 `;
 
+
+
 function Navbar(props) {
   const { setIsFavoritesInfoBoxOpen } = props;
   return (
     <StyledNavbar className={props.className}>
+      {/* <Sidebar /> */}
+
       <StyledName href="#">{props.name}</StyledName>
       <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>
         <Favorite />
