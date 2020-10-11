@@ -1,7 +1,7 @@
 export const PRODUCTS_DATA = [
   {
     name: "Onze Bierkaart",
-    note: "meer dan 80 biertjes die je eens geprobeerd moet hebben.",
+    note: "Meer dan 80 biertjes die je eens geprobeerd moet hebben.",
     subcategories: [
       {
         name: "Tap",
