@@ -10,7 +10,6 @@ import { ThemeProvider } from "emotion-theming";
 import { theme } from "./theme";
 import ProductInfoBox from "./components/product/ProductInfoBox";
 
-
 const StyledApp = styled.div`
   padding: 7rem 2rem;
 `;
@@ -48,7 +47,13 @@ function App() {
           setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
           setActiveProduct={setActiveProduct}
         />
-        <ProductInfoBox isFavorite={isFavorite} toggleProductIsFavorite={toggleProductIsFavorite} activeProduct={activeProduct} isInfoBoxOpen={activeProduct!=null} closeInfoBox={() => setActiveProduct(null)} />
+        <ProductInfoBox
+          isFavorite={isFavorite}
+          toggleProductIsFavorite={toggleProductIsFavorite}
+          activeProduct={activeProduct}
+          isInfoBoxOpen={activeProduct != null}
+          closeInfoBox={() => setActiveProduct(null)}
+        />
         <MenuCardPage
           PRODUCTS_DATA={PRODUCTS_DATA}
           setActiveProduct={setActiveProduct}

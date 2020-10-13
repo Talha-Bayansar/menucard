@@ -3,7 +3,12 @@ import InfoBox from "../ui/InfoBox";
 import ProductLine from "./ProductLine";
 
 function FavoritesInfoBox(props) {
-  const { favorites, isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen, setActiveProduct } = props;
+  const {
+    favorites,
+    isFavoritesInfoBoxOpen,
+    setIsFavoritesInfoBoxOpen,
+    setActiveProduct,
+  } = props;
 
   return (
     <InfoBox
@@ -11,13 +16,19 @@ function FavoritesInfoBox(props) {
       closeInfoBox={() => setIsFavoritesInfoBoxOpen(false)}
     >
       <div>
-            <h2>Je favorieten</h2>
-            <div>
-              {favorites.length !== 0
-                ? favorites.map((f) => <ProductLine key={f.id} product={f} toggle={() => setActiveProduct(f)} />)
-                : "Je hebt nog geen favorieten."}
-            </div>
-          </div>
+        <h2>Je favorieten</h2>
+        <div>
+          {favorites.length !== 0
+            ? favorites.map((f) => (
+                <ProductLine
+                  key={f.id}
+                  product={f}
+                  toggle={() => setActiveProduct(f)}
+                />
+              ))
+            : "Je hebt nog geen favorieten."}
+        </div>
+      </div>
     </InfoBox>
   );
 }

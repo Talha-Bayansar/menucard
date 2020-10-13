@@ -43,7 +43,7 @@ const StyledMenu = styled(Menu)`
   justify-content: flex-start;
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     color: grey;
   }
 `;
@@ -53,7 +53,11 @@ function Navbar(props) {
   const [isActive, setIsActive] = useState(false);
   return (
     <StyledNavbar className={props.className}>
-      <Sidebar PRODUCTS_DATA={PRODUCTS_DATA} isActive={isActive} setIsActive={setIsActive} />
+      <Sidebar
+        PRODUCTS_DATA={PRODUCTS_DATA}
+        isActive={isActive}
+        setIsActive={setIsActive}
+      />
       <StyledMenu onClick={() => setIsActive(!isActive)} />
       <StyledName href="#">{props.name}</StyledName>
       <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>

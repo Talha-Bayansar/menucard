@@ -5,7 +5,7 @@ import { Favorite } from "@material-ui/icons";
 
 const StyledProductLine = styled.div`
   display: flex;
-  cursor: ${(props) => props.onClick ? "pointer" : "auto"};
+  cursor: ${(props) => (props.onClick ? "pointer" : "auto")};
   align-items: center;
 
   & div {
@@ -31,7 +31,7 @@ const StyledProductNote = styled(Note)`
 `;
 
 const StyledFavorite = styled(Favorite)`
-  color: ${props => props.theme.colors.red};
+  color: ${(props) => props.theme.colors.red};
 `;
 
 /** @return {null} */
@@ -44,12 +44,14 @@ function ProductLine(props) {
         <StyledProductName>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
-          {product.percentage && <StyledSizeSpan> {product.percentage}%</StyledSizeSpan>}
+          {product.percentage && (
+            <StyledSizeSpan> {product.percentage}%</StyledSizeSpan>
+          )}
         </StyledProductName>
         <StyledProductPrice>
           {product.price.toFixed(2)}&euro;
         </StyledProductPrice>
-        {isFavorite && <StyledFavorite/>}
+        {isFavorite && <StyledFavorite />}
       </StyledProductLine>
       {product.note && (
         <StyledProductNote className="note productNote" note={product.note} />

@@ -1,54 +1,55 @@
-import React from 'react'
+import React from "react";
 import styled from "@emotion/styled";
 
 const StyledSidebar = styled.div`
-    position: fixed;
-    left: 0;
-    top: 0;
-    display: ${props => props.visible ? "flex" : "none"};
-    background-color: black;
-    width: 50vw;
-    height: 100vh;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: ${(props) => (props.visible ? "flex" : "none")};
+  background-color: black;
+  width: 50vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
 
-    & a {
-        text-decoration: none;
-        color: white;
-        margin-top: 3rem;
-    }
+  & a {
+    text-decoration: none;
+    color: white;
+    margin-top: 3rem;
+  }
 
-    & a:hover{
-        color: grey;
-    }
+  & a:hover {
+    color: grey;
+  }
 `;
 
 const StyledButton = styled.button`
-    background-color: transparent;
-    color: white;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 
-    &:hover{
-        color: grey;
-    }
+  &:hover {
+    color: grey;
+  }
 `;
 
 function Sidebar(props) {
+  const { isActive, setIsActive, PRODUCTS_DATA } = props;
 
-    const {isActive, setIsActive, PRODUCTS_DATA} = props;
-
-    return (
-        <StyledSidebar visible={isActive}>
-            <StyledButton onClick={() => setIsActive(!isActive)}>x</StyledButton>
-            {PRODUCTS_DATA.map(c => <a href="#">{c.name}</a>)}
-        </StyledSidebar>
-    )
+  return (
+    <StyledSidebar visible={isActive}>
+      <StyledButton onClick={() => setIsActive(!isActive)}>x</StyledButton>
+      {PRODUCTS_DATA.map((c) => (
+        <a href="#">{c.name}</a>
+      ))}
+    </StyledSidebar>
+  );
 }
 
-export default Sidebar
+export default Sidebar;
