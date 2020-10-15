@@ -9,12 +9,14 @@ import FavoritesInfoBox from "./components/product/FavoritesInfoBox";
 import { ThemeProvider } from "emotion-theming";
 import { theme } from "./theme";
 import ProductInfoBox from "./components/product/ProductInfoBox";
+import { MessageProvider } from "./components/contexts/MessageProvider";
+import { Message } from "./components/ui/Message";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
 `;
 
-function App() {
+function ProvidedApp() {
   const [favorites, setFavorites] = useState([]);
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState(null);
@@ -34,32 +36,41 @@ function App() {
   };
 
   return (
+    <StyledApp className="app">
+      <Message />
+      <Navbar
+        setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+        name="Menu"
+        PRODUCTS_DATA={PRODUCTS_DATA}
+      />
+      <FavoritesInfoBox
+        favorites={favorites}
+        isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
+        setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
+        setActiveProduct={setActiveProduct}
+      />
+      <ProductInfoBox
+        isFavorite={isFavorite}
+        toggleProductIsFavorite={toggleProductIsFavorite}
+        activeProduct={activeProduct}
+        isInfoBoxOpen={activeProduct != null}
+        closeInfoBox={() => setActiveProduct(null)}
+      />
+      <MenuCardPage
+        PRODUCTS_DATA={PRODUCTS_DATA}
+        setActiveProduct={setActiveProduct}
+        isFavorite={isFavorite}
+      />
+    </StyledApp>
+  );
+}
+
+function App() {
+  return (
     <ThemeProvider theme={theme}>
-      <StyledApp className="app">
-        <Navbar
-          setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
-          name="Menu"
-          PRODUCTS_DATA={PRODUCTS_DATA}
-        />
-        <FavoritesInfoBox
-          favorites={favorites}
-          isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
-          setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
-          setActiveProduct={setActiveProduct}
-        />
-        <ProductInfoBox
-          isFavorite={isFavorite}
-          toggleProductIsFavorite={toggleProductIsFavorite}
-          activeProduct={activeProduct}
-          isInfoBoxOpen={activeProduct != null}
-          closeInfoBox={() => setActiveProduct(null)}
-        />
-        <MenuCardPage
-          PRODUCTS_DATA={PRODUCTS_DATA}
-          setActiveProduct={setActiveProduct}
-          isFavorite={isFavorite}
-        />
-      </StyledApp>
+      <MessageProvider>
+        <ProvidedApp />
+      </MessageProvider>
     </ThemeProvider>
   );
 }
