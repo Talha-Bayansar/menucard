@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 const MessageContext = createContext();
 export function MessageProvider(props) {
-  const [message, setMessage] = useState("Hallo");
+  const [message, setMessage] = useState(null);
   const api = useMemo(() => ({ message, setMessage }), [message, setMessage]);
   return (
     <MessageContext.Provider value={api}>
