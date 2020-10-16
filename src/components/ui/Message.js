@@ -25,7 +25,9 @@ const StyledMessage = styled.div`
   }
 `;
 export function Message() {
-  const { message, setMessage } = useMessageContext();
+  const { message, setMessage } = useMessageContext(
+    "Deze website gebruikt localStorage. Is dat oke?"
+  );
   return (
     <StyledMessage onClick={() => setMessage(null)} open={message != null}>
       {message}

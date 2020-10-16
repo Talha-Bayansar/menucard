@@ -1,4 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
+
 export function useLocalStorage(
   key,
   initialValue,
@@ -11,7 +12,9 @@ export function useLocalStorage(
       ? convertFromLocalStorage(readValue)
       : readValue;
   }, [convertFromLocalStorage, initialValue, key]);
+
   const [value, setValueInState] = useState(readFromLocalStorage);
+
   const setValue = useCallback(
     (newValue) => {
       const valueToWrite = convertToLocalStorage
@@ -22,6 +25,7 @@ export function useLocalStorage(
     },
     [setValueInState, convertToLocalStorage, key]
   );
+
   useEffect(() => {
     console.log("useEffect");
     const listener = (e) =>
@@ -31,5 +35,6 @@ export function useLocalStorage(
       window.removeEventListener("storage", listener);
     };
   }, [key, readFromLocalStorage, setValueInState]);
+
   return [value, setValue];
 }
