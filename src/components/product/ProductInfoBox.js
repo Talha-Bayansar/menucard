@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import { Favorite, Chat } from "@material-ui/icons";
 import { useMessageContext } from "../contexts/MessageProvider";
 import { useActiveProductContext } from "../contexts/ActiveProductProvider";
+import { useFavoritesContext } from "../contexts/FavoritesProvider";
 
 const StyledButton = styled.button`
   border-radius: 50%;
@@ -60,7 +61,7 @@ const StyledDivButtons = styled.div`
 function ProductInfoBox(props) {
   const { setMessage } = useMessageContext();
   const { activeProduct, setActiveProduct } = useActiveProductContext();
-  const { toggleProductIsFavorite, isFavorite } = props;
+  const { toggleProductIsFavorite, isFavorite } = useFavoritesContext();
   return (
     <>
       <InfoBox
@@ -69,7 +70,7 @@ function ProductInfoBox(props) {
       >
         <h2>Info Box</h2>
         {activeProduct && (
-          <ProductLine product={activeProduct} isNotClickable={true} />
+          <ProductLine product={activeProduct} isNotClickable />
         )}
         {activeProduct ? <p>{activeProduct.info}</p> : null}
         <StyledDivButtons>

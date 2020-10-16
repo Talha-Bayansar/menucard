@@ -2,9 +2,11 @@ import React from "react";
 import ProductLine from "./ProductLine";
 import Category from "./Category";
 import Subcategory from "./Subcategory";
+import { useFavoritesContext } from "../contexts/FavoritesProvider";
 
 function MenuCardPage(props) {
-  const { PRODUCTS_DATA, isFavorite } = props;
+  const { PRODUCTS_DATA } = props;
+  const { isFavorite } = useFavoritesContext();
   return (
     <>
       {PRODUCTS_DATA.map((category) => (

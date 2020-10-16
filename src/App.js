@@ -22,22 +22,7 @@ const StyledApp = styled.div`
 `;
 
 function ProvidedApp() {
-  const { favorites, setFavorites } = useFavoritesContext();
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
-
-  const isFavorite = (product) => {
-    return product && favorites.find((f) => f.id === product.id);
-  };
-
-  const toggleProductIsFavorite = (product) => {
-    let newArray = favorites;
-    if (isFavorite(product)) {
-      newArray = newArray.filter((e) => e.id !== product.id);
-    } else {
-      newArray = [...favorites, product];
-    }
-    setFavorites(newArray);
-  };
 
   return (
     <StyledApp className="app">
@@ -51,11 +36,8 @@ function ProvidedApp() {
         isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
         setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
       />
-      <ProductInfoBox
-        isFavorite={isFavorite}
-        toggleProductIsFavorite={toggleProductIsFavorite}
-      />
-      <MenuCardPage PRODUCTS_DATA={PRODUCTS_DATA} isFavorite={isFavorite} />
+      <ProductInfoBox />
+      <MenuCardPage PRODUCTS_DATA={PRODUCTS_DATA} />
     </StyledApp>
   );
 }
