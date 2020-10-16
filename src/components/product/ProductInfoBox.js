@@ -68,7 +68,9 @@ function ProductInfoBox(props) {
         closeInfoBox={() => setActiveProduct(null)}
       >
         <h2>Info Box</h2>
-        {activeProduct && <ProductLine product={activeProduct} />}
+        {activeProduct && (
+          <ProductLine product={activeProduct} isNotClickable={true} />
+        )}
         {activeProduct ? <p>{activeProduct.info}</p> : null}
         <StyledDivButtons>
           <StyledButtonMessage

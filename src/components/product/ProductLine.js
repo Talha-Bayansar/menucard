@@ -6,7 +6,7 @@ import { useActiveProductContext } from "../contexts/ActiveProductProvider";
 
 const StyledProductLine = styled.div`
   display: flex;
-  cursor: ${(props) => (props.onClick ? "pointer" : "auto")};
+  cursor: ${(props) => (props.isNotClickable ? "auto" : "pointer")};
   align-items: center;
 
   & div {
@@ -37,12 +37,13 @@ const StyledFavorite = styled(Favorite)`
 
 /** @return {null} */
 function ProductLine(props) {
-  const { product, isFavorite } = props;
-  const { activeProduct, setActiveProduct } = useActiveProductContext();
+  const { product, isFavorite, isNotClickable } = props;
+  const { setActiveProduct } = useActiveProductContext();
   if (!product.name) return null;
   return (
     <>
       <StyledProductLine
+        isNotClickable={isNotClickable}
         onClick={() => {
           setActiveProduct(product);
         }}

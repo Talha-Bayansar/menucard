@@ -5,9 +5,12 @@ const StyledSidebar = styled.div`
   position: fixed;
   left: 0;
   top: 0;
-  display: ${(props) => (props.visible ? "flex" : "none")};
+  display: flex;
+  transform: ${(props) =>
+    props.visible ? "translateX(0%)" : "translateX(-100%)"};
+  transition: transform 0.3s ease-in-out;
   background-color: black;
-  width: 50vw;
+  width: 40vw;
   height: 100vh;
   flex-direction: column;
   align-items: center;

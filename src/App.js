@@ -12,13 +12,17 @@ import ProductInfoBox from "./components/product/ProductInfoBox";
 import { MessageProvider } from "./components/contexts/MessageProvider";
 import { ActiveProductProvider } from "./components/contexts/ActiveProductProvider";
 import { Message } from "./components/ui/Message";
+import {
+  FavoritesProvider,
+  useFavoritesContext,
+} from "./components/contexts/FavoritesProvider";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
 `;
 
 function ProvidedApp() {
-  const [favorites, setFavorites] = useState([]);
+  const { favorites, setFavorites } = useFavoritesContext();
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
 
   const isFavorite = (product) => {
@@ -44,7 +48,6 @@ function ProvidedApp() {
         PRODUCTS_DATA={PRODUCTS_DATA}
       />
       <FavoritesInfoBox
-        favorites={favorites}
         isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
         setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
       />
@@ -62,7 +65,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <MessageProvider>
         <ActiveProductProvider>
-          <ProvidedApp />
+          <FavoritesProvider>
+            <ProvidedApp />
+          </FavoritesProvider>
         </ActiveProductProvider>
       </MessageProvider>
     </ThemeProvider>

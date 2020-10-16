@@ -1,13 +1,12 @@
 import React from "react";
+import { useFavoritesContext } from "../contexts/FavoritesProvider";
 import InfoBox from "../ui/InfoBox";
 import ProductLine from "./ProductLine";
 
 function FavoritesInfoBox(props) {
-  const {
-    favorites,
-    isFavoritesInfoBoxOpen,
-    setIsFavoritesInfoBoxOpen,
-  } = props;
+  const { isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen } = props;
+
+  const { favorites } = useFavoritesContext();
 
   return (
     <InfoBox
