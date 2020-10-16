@@ -5,11 +5,26 @@ import React, {
   useContext,
   useCallback,
 } from "react";
+import { useLocalStorage } from "../../utilities/localstorage";
+import { FLAT_PRODUCT_DATA } from "../../utilities/flat_product_data";
 
 const FavoritesContext = createContext();
 
+const idToProduct = (array) => {
+  return array.map((id) => FLAT_PRODUCT_DATA.find((p) => id === p.id));
+};
+
+const productToId = (array) => {
+  return array.map((p) => p.id);
+};
+
 export function FavoritesProvider(props) {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useLocalStorage(
+    "favorites",
+    [],
+    idToProduct,
+    productToId
+  );
 
   const isFavorite = useCallback(
     (product) => {

@@ -12,10 +12,7 @@ import ProductInfoBox from "./components/product/ProductInfoBox";
 import { MessageProvider } from "./components/contexts/MessageProvider";
 import { ActiveProductProvider } from "./components/contexts/ActiveProductProvider";
 import { Message } from "./components/ui/Message";
-import {
-  FavoritesProvider,
-  useFavoritesContext,
-} from "./components/contexts/FavoritesProvider";
+import { FavoritesProvider } from "./components/contexts/FavoritesProvider";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
