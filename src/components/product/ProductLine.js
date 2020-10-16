@@ -2,6 +2,7 @@ import React from "react";
 import Note from "./Note";
 import styled from "@emotion/styled";
 import { Favorite } from "@material-ui/icons";
+import { useActiveProductContext } from "../contexts/ActiveProductProvider";
 
 const StyledProductLine = styled.div`
   display: flex;
@@ -36,11 +37,16 @@ const StyledFavorite = styled(Favorite)`
 
 /** @return {null} */
 function ProductLine(props) {
-  const { product, toggle, isFavorite } = props;
+  const { product, isFavorite } = props;
+  const { activeProduct, setActiveProduct } = useActiveProductContext();
   if (!product.name) return null;
   return (
     <>
-      <StyledProductLine onClick={toggle}>
+      <StyledProductLine
+        onClick={() => {
+          setActiveProduct(product);
+        }}
+      >
         <StyledProductName>
           {product.name}{" "}
           {product.size && <StyledSizeSpan>-{product.size}CL</StyledSizeSpan>}
@@ -53,9 +59,7 @@ function ProductLine(props) {
         </StyledProductPrice>
         {isFavorite && <StyledFavorite />}
       </StyledProductLine>
-      {product.note && (
-        <StyledProductNote className="note productNote" note={product.note} />
-      )}
+      {product.note && <StyledProductNote note={product.note} />}
     </>
   );
 }

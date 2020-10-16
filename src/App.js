@@ -10,6 +10,7 @@ import { ThemeProvider } from "emotion-theming";
 import { theme } from "./theme";
 import ProductInfoBox from "./components/product/ProductInfoBox";
 import { MessageProvider } from "./components/contexts/MessageProvider";
+import { ActiveProductProvider } from "./components/contexts/ActiveProductProvider";
 import { Message } from "./components/ui/Message";
 
 const StyledApp = styled.div`
@@ -19,7 +20,6 @@ const StyledApp = styled.div`
 function ProvidedApp() {
   const [favorites, setFavorites] = useState([]);
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
-  const [activeProduct, setActiveProduct] = useState(null);
 
   const isFavorite = (product) => {
     return product && favorites.find((f) => f.id === product.id);
@@ -47,20 +47,12 @@ function ProvidedApp() {
         favorites={favorites}
         isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
         setIsFavoritesInfoBoxOpen={setIsFavoritesInfoBoxOpen}
-        setActiveProduct={setActiveProduct}
       />
       <ProductInfoBox
         isFavorite={isFavorite}
         toggleProductIsFavorite={toggleProductIsFavorite}
-        activeProduct={activeProduct}
-        isInfoBoxOpen={activeProduct != null}
-        closeInfoBox={() => setActiveProduct(null)}
       />
-      <MenuCardPage
-        PRODUCTS_DATA={PRODUCTS_DATA}
-        setActiveProduct={setActiveProduct}
-        isFavorite={isFavorite}
-      />
+      <MenuCardPage PRODUCTS_DATA={PRODUCTS_DATA} isFavorite={isFavorite} />
     </StyledApp>
   );
 }
@@ -69,7 +61,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <MessageProvider>
-        <ProvidedApp />
+        <ActiveProductProvider>
+          <ProvidedApp />
+        </ActiveProductProvider>
       </MessageProvider>
     </ThemeProvider>
   );

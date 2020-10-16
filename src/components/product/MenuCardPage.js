@@ -4,7 +4,7 @@ import Category from "./Category";
 import Subcategory from "./Subcategory";
 
 function MenuCardPage(props) {
-  const { PRODUCTS_DATA, setActiveProduct, isFavorite } = props;
+  const { PRODUCTS_DATA, isFavorite } = props;
   return (
     <>
       {PRODUCTS_DATA.map((category) => (
@@ -15,7 +15,6 @@ function MenuCardPage(props) {
                 <ProductLine
                   key={p.id}
                   product={p}
-                  toggle={() => setActiveProduct(p)}
                   isFavorite={isFavorite(p)}
                 />
               ))}

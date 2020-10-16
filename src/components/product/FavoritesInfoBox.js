@@ -7,7 +7,6 @@ function FavoritesInfoBox(props) {
     favorites,
     isFavoritesInfoBoxOpen,
     setIsFavoritesInfoBoxOpen,
-    setActiveProduct,
   } = props;
 
   return (
@@ -19,13 +18,7 @@ function FavoritesInfoBox(props) {
         <h2>Je favorieten</h2>
         <div>
           {favorites.length !== 0
-            ? favorites.map((f) => (
-                <ProductLine
-                  key={f.id}
-                  product={f}
-                  toggle={() => setActiveProduct(f)}
-                />
-              ))
+            ? favorites.map((f) => <ProductLine key={f.id} product={f} />)
             : "Je hebt nog geen favorieten."}
         </div>
       </div>
