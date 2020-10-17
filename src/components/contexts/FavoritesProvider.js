@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useMemo,
-  useState,
-  useContext,
-  useCallback,
-} from "react";
+import React, { createContext, useMemo, useContext, useCallback } from "react";
 import { useLocalStorage } from "../../utilities/localstorage";
 import { FLAT_PRODUCT_DATA } from "../../utilities/flat_product_data";
 
@@ -43,7 +37,7 @@ export function FavoritesProvider(props) {
       }
       setFavorites(newArray);
     },
-    [favorites, isFavorite]
+    [favorites, isFavorite, setFavorites]
   );
 
   const api = useMemo(
