@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { NavigateNext, NavigateBefore } from "@material-ui/icons";
+import { useActiveProductContext } from "../contexts/ActiveProductProvider";
+import { FLAT_PRODUCT_DATA } from "../../utilities/flat_product_data";
 
 const StyledInfoBox = styled.div`
   background-color: white;
@@ -42,13 +45,56 @@ const StyledOverlay = styled.div`
   display: ${(props) => (props.isInfoBoxOpen ? "block" : "none")};
 `;
 
+const StyledNavigateButtons = styled.div`
+  position: absolute;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 7.5%;
+
+  & > * {
+    cursor: pointer;
+  }
+
+  & > *:hover {
+    color: grey;
+  }
+`;
+
 function InfoBox(props) {
   const { isInfoBoxOpen, closeInfoBox } = props;
+  const { activeProduct, setActiveProduct } = useActiveProductContext();
+  const nextProduct = (activeProduct) => {
+    let i = 0;
+    FLAT_PRODUCT_DATA.forEach((p, index) => {
+      if (p.id === activeProduct.id) i = index;
+    });
+    return FLAT_PRODUCT_DATA[i + 1];
+  };
+
+  const previousProduct = (activeProduct) => {
+    let i = 0;
+    FLAT_PRODUCT_DATA.forEach((p, index) => {
+      if (p.id === activeProduct.id) i = index;
+    });
+    return FLAT_PRODUCT_DATA[i - 1];
+  };
+
   let icon = "x";
+
   return (
     <>
       <StyledOverlay isInfoBoxOpen={isInfoBoxOpen} onClick={closeInfoBox} />
       <StyledInfoBox visible={isInfoBoxOpen}>
+        <StyledNavigateButtons>
+          <NavigateBefore
+            onClick={() => setActiveProduct(previousProduct(activeProduct))}
+          />
+          <NavigateNext
+            onClick={() => setActiveProduct(nextProduct(activeProduct))}
+          />
+        </StyledNavigateButtons>
         <StyledButton onClick={closeInfoBox}>{icon}</StyledButton>
         {props.children}
       </StyledInfoBox>

@@ -16,6 +16,7 @@ const StyledNavbar = styled.div`
   justify-content: space-between;
   width: 100vw;
   padding: 1.5rem;
+  z-index: 500;
 `;
 
 const StyledName = styled.span`

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { HashLink } from "react-router-hash-link";
 
 const StyledSidebar = styled.div`
   position: fixed;
@@ -49,9 +50,9 @@ function Sidebar(props) {
     <StyledSidebar visible={isActive}>
       <StyledButton onClick={() => setIsActive(!isActive)}>x</StyledButton>
       {PRODUCTS_DATA.map((c) => (
-        <a key={c.name} href="/">
+        <HashLink key={c.name} to="/">
           {c.name}
-        </a>
+        </HashLink>
       ))}
     </StyledSidebar>
   );
