@@ -9,7 +9,7 @@ const StyledMessage = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.secondaryDark};
   color: ${({ theme }) => theme.colors.primaryLight};
-  z-index: 50;
+  z-index: 501;
   align-items: center;
   padding: 8px 15px;
   min-height: 70px;
