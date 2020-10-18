@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductLine from "./ProductLine";
 import Category from "./Category";
 import Subcategory from "./Subcategory";
 import { useFavoritesContext } from "../contexts/FavoritesProvider";
+import { FLAT_PRODUCT_DATA } from "../../utilities/flat_product_data";
+import { useActiveProductContext } from "../contexts/ActiveProductProvider";
 
 function MenuCardPage(props) {
   const { PRODUCTS_DATA } = props;
   const { isFavorite } = useFavoritesContext();
+  const { setFlatProductList } = useActiveProductContext();
+  useEffect(() => {
+    setFlatProductList(FLAT_PRODUCT_DATA);
+  }, setFlatProductList);
   return (
     <>
       {PRODUCTS_DATA.map((category) => (

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "@emotion/styled";
 import { NavigateNext, NavigateBefore } from "@material-ui/icons";
 import { useActiveProductContext } from "../contexts/ActiveProductProvider";
-import { FLAT_PRODUCT_DATA } from "../../utilities/flat_product_data";
 
 const StyledInfoBox = styled.div`
   background-color: white;
@@ -64,21 +63,27 @@ const StyledNavigateButtons = styled.div`
 
 function InfoBox(props) {
   const { isInfoBoxOpen, closeInfoBox } = props;
-  const { activeProduct, setActiveProduct } = useActiveProductContext();
+  const {
+    activeProduct,
+    setActiveProduct,
+    flatProductList,
+  } = useActiveProductContext();
   const nextProduct = (activeProduct) => {
     let i = 0;
-    FLAT_PRODUCT_DATA.forEach((p, index) => {
+    flatProductList.forEach((p, index) => {
       if (p.id === activeProduct.id) i = index;
     });
-    return FLAT_PRODUCT_DATA[i + 1];
+    return flatProductList[i + 1] ? flatProductList[i + 1] : flatProductList[0];
   };
 
   const previousProduct = (activeProduct) => {
     let i = 0;
-    FLAT_PRODUCT_DATA.forEach((p, index) => {
+    flatProductList.forEach((p, index) => {
       if (p.id === activeProduct.id) i = index;
     });
-    return FLAT_PRODUCT_DATA[i - 1];
+    return flatProductList[i - 1]
+      ? flatProductList[i - 1]
+      : flatProductList[flatProductList.length - 1];
   };
 
   let icon = "x";

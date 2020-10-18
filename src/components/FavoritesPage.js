@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useActiveProductContext } from "./contexts/ActiveProductProvider";
 import { useFavoritesContext } from "./contexts/FavoritesProvider";
 import ProductLine from "./product/ProductLine";
 
 function FavoritesPage(props) {
   const { favorites } = useFavoritesContext();
+
+  const { setFlatProductList } = useActiveProductContext();
+
+  useEffect(() => {
+    setFlatProductList(favorites);
+  }, setFlatProductList);
 
   return (
     <div>

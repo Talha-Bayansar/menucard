@@ -4,10 +4,16 @@ const ActiveProductContext = createContext();
 
 export function ActiveProductProvider(props) {
   const [activeProduct, setActiveProduct] = useState(null);
-  const api = useMemo(() => ({ activeProduct, setActiveProduct }), [
-    activeProduct,
-    setActiveProduct,
-  ]);
+  const [flatProductList, setFlatProductList] = useState([]);
+  const api = useMemo(
+    () => ({
+      activeProduct,
+      setActiveProduct,
+      flatProductList,
+      setFlatProductList,
+    }),
+    [activeProduct, setActiveProduct, flatProductList, setFlatProductList]
+  );
   return (
     <ActiveProductContext.Provider value={api}>
       {props.children}
