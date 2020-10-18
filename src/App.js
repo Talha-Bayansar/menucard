@@ -41,7 +41,7 @@ function ProvidedApp() {
 
           <ProductInfoBox />
 
-          <Route path={("/", "/menucard", "/menu")}>
+          <Route path={["/", "/menucard", "/menu"]}>
             <MenuCardPage PRODUCTS_DATA={PRODUCTS_DATA} />
           </Route>
         </Switch>

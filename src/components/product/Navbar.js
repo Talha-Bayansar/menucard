@@ -59,7 +59,7 @@ function Navbar(props) {
         setIsActive={setIsActive}
       />
       <StyledMenu onClick={() => setIsActive(!isActive)} />
-      <StyledName href="#">{props.name}</StyledName>
+      <StyledName href="/">{props.name}</StyledName>
       <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>
         <Favorite />
       </StyledButton>

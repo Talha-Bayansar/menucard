@@ -49,7 +49,7 @@ function Sidebar(props) {
     <StyledSidebar visible={isActive}>
       <StyledButton onClick={() => setIsActive(!isActive)}>x</StyledButton>
       {PRODUCTS_DATA.map((c) => (
-        <a key={c.name} href="#">
+        <a key={c.name} href="/">
           {c.name}
         </a>
       ))}
