@@ -12,7 +12,7 @@ function MenuCardPage(props) {
   const { setFlatProductList } = useActiveProductContext();
   useEffect(() => {
     setFlatProductList(FLAT_PRODUCT_DATA);
-  }, setFlatProductList);
+  }, [setFlatProductList]);
   return (
     <>
       {PRODUCTS_DATA.map((category) => (

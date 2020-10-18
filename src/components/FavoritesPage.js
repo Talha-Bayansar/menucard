@@ -10,7 +10,7 @@ function FavoritesPage(props) {
 
   useEffect(() => {
     setFlatProductList(favorites);
-  }, setFlatProductList);
+  }, [setFlatProductList, favorites]);
 
   return (
     <div>
