@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { Favorite, Menu } from "@material-ui/icons";
 import Sidebar from "./Sidebar";
+import { Link } from "react-router-dom";
 
 const StyledNavbar = styled.div`
   position: fixed;
@@ -17,9 +18,8 @@ const StyledNavbar = styled.div`
   padding: 1.5rem;
 `;
 
-const StyledName = styled.a`
+const StyledName = styled.span`
   color: white;
-  text-decoration: none;
 
   &:hover {
     color: grey;
@@ -49,7 +49,7 @@ const StyledMenu = styled(Menu)`
 `;
 
 function Navbar(props) {
-  const { setIsFavoritesInfoBoxOpen, PRODUCTS_DATA } = props;
+  const { PRODUCTS_DATA } = props;
   const [isActive, setIsActive] = useState(false);
   return (
     <StyledNavbar className={props.className}>
@@ -59,10 +59,14 @@ function Navbar(props) {
         setIsActive={setIsActive}
       />
       <StyledMenu onClick={() => setIsActive(!isActive)} />
-      <StyledName href="/">{props.name}</StyledName>
-      <StyledButton onClick={() => setIsFavoritesInfoBoxOpen(true)}>
-        <Favorite />
-      </StyledButton>
+      <Link to="/">
+        <StyledName>{props.name}</StyledName>
+      </Link>
+      <Link to="favorites">
+        <StyledButton>
+          <Favorite />
+        </StyledButton>
+      </Link>
     </StyledNavbar>
   );
 }

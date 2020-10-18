@@ -4,15 +4,10 @@ import InfoBox from "./ui/InfoBox";
 import ProductLine from "./product/ProductLine";
 
 function FavoritesPage(props) {
-  const { isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen } = props;
-
   const { favorites } = useFavoritesContext();
 
   return (
-    <InfoBox
-      isInfoBoxOpen={isFavoritesInfoBoxOpen}
-      closeInfoBox={() => setIsFavoritesInfoBoxOpen(false)}
-    >
+    <InfoBox isInfoBoxOpen={true}>
       <div>
         <h2>Je favorieten</h2>
         <div>

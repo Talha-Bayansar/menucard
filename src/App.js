@@ -31,6 +31,7 @@ function ProvidedApp() {
           name="Menu"
           PRODUCTS_DATA={PRODUCTS_DATA}
         />
+
         <Switch>
           <Route path="/favorites">
             <FavoritesPage
@@ -39,12 +40,11 @@ function ProvidedApp() {
             />
           </Route>
 
-          <ProductInfoBox />
-
           <Route path={["/", "/menucard", "/menu"]}>
             <MenuCardPage PRODUCTS_DATA={PRODUCTS_DATA} />
           </Route>
         </Switch>
+        <ProductInfoBox />
       </StyledApp>
     </HashRouter>
   );
