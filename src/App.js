@@ -16,6 +16,7 @@ import { FavoritesProvider } from "./components/contexts/FavoritesProvider";
 import { Switch, Route, HashRouter } from "react-router-dom";
 import TablePage from "./components/TablePage";
 import { OrderListProvider } from "./components/contexts/OrderListProvider";
+import { STATUS_NEW } from "./services/firestore";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -23,6 +24,7 @@ const StyledApp = styled.div`
 
 function ProvidedApp() {
   const [isFavoritesInfoBoxOpen, setIsFavoritesInfoBoxOpen] = useState(false);
+  console.log(STATUS_NEW);
 
   return (
     <HashRouter basename="/">
