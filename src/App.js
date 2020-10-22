@@ -14,6 +14,8 @@ import { ActiveProductProvider } from "./components/contexts/ActiveProductProvid
 import { Message } from "./components/ui/Message";
 import { FavoritesProvider } from "./components/contexts/FavoritesProvider";
 import { Switch, Route, HashRouter } from "react-router-dom";
+import TablePage from "./components/TablePage";
+import { OrderListProvider } from "./components/contexts/OrderListProvider";
 
 const StyledApp = styled.div`
   padding: 7rem 2rem;
@@ -33,6 +35,10 @@ function ProvidedApp() {
         />
 
         <Switch>
+          <Route path={["/table/:tableNumberFromUrl"]}>
+            <TablePage />
+          </Route>
+
           <Route path="/favorites">
             <FavoritesPage
               isFavoritesInfoBoxOpen={isFavoritesInfoBoxOpen}
@@ -56,7 +62,9 @@ function App() {
       <MessageProvider>
         <ActiveProductProvider>
           <FavoritesProvider>
-            <ProvidedApp />
+            <OrderListProvider>
+              <ProvidedApp />
+            </OrderListProvider>
           </FavoritesProvider>
         </ActiveProductProvider>
       </MessageProvider>
