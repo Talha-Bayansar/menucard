@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
-import { Favorite, Menu } from "@material-ui/icons";
+import { Favorite, Menu, ShoppingCart } from "@material-ui/icons";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 
@@ -63,11 +63,18 @@ function Navbar(props) {
       <Link to="/">
         <StyledName>{props.name}</StyledName>
       </Link>
-      <Link to="favorites">
-        <StyledButton>
-          <Favorite />
-        </StyledButton>
-      </Link>
+      <div>
+        <Link to="favorites">
+          <StyledButton>
+            <Favorite />
+          </StyledButton>
+        </Link>
+        <Link to="ordered">
+          <StyledButton>
+            <ShoppingCart />
+          </StyledButton>
+        </Link>
+      </div>
     </StyledNavbar>
   );
 }
