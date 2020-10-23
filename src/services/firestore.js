@@ -2,30 +2,28 @@ import * as firebase from "firebase/app";
 import "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
-const db = (firebaseConfig.projectId ? firebase.firestore() : null);
+const db = firebaseConfig.projectId ? firebase.firestore() : null;
 
-if (db)
-    console.log(`connection to database is ok`);
-else
-    console.log(`ERROR: no connection to database`);
+if (db) console.log(`connection to database is ok`);
+else console.log(`ERROR: no connection to database`);
 
 export const STATUS_NEW = "new";
-
 
 //returns a promise
 //when resolved, return value is a collection of orders
 function getOrderListForTable(tableNumber, statuses) {
-    if (!db) return new Promise((resolve, reject) => reject("no database"));
-    return db.collection('orders')
-        .where("tableNumber", "==", tableNumber)
-        .where("status", "in", statuses)
-        .get();
+  if (!db) return new Promise((resolve, reject) => reject("no database"));
+  return db
+    .collection("orders")
+    .where("tableNumber", "==", tableNumber)
+    .where("status", "in", statuses)
+    .get();
 }
 
 /**
@@ -35,13 +33,13 @@ function getOrderListForTable(tableNumber, statuses) {
  * If not found, it returns null.
  */
 export async function getOrderListIdForTable(tableNumber) {
-    if (!db) return null;
-    if (!tableNumber) return null;
+  if (!db) return null;
+  if (!tableNumber) return null;
 
-    const orderListFromDb = await getOrderListForTable(tableNumber, [STATUS_NEW]);
-    if (orderListFromDb.empty) return null;
+  const orderListFromDb = await getOrderListForTable(tableNumber, [STATUS_NEW]);
+  if (orderListFromDb.empty) return null;
 
-    return orderListFromDb.docs[0].id;
+  return orderListFromDb.docs[0].id;
 }
 
 /**
@@ -52,9 +50,39 @@ export async function getOrderListIdForTable(tableNumber) {
  * see Observer Pattern
  */
 export function streamOrder(orderListId, observer) {
-    if (!db) return;
+  if (!db) return;
 
-    db.collection('orders')
-        .doc(orderListId)
-        .onSnapshot(observer);
+  db.collection("orders").doc(orderListId).onSnapshot(observer);
+}
+
+/**
+ * create new orderList in the database for the given tableNumber
+ * @param tableNumber
+ * @returns a Promise. When resolved, return value is a collection of orders
+ * the promise is rejected when there is no db connection
+ */
+function createNewOrderList(tableNumber) {
+  if (!db) return new Promise((resolve, reject) => reject("no database"));
+  return db.collection("orders").add({
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    tableNumber: tableNumber,
+    orders: [],
+    totalPrice: 0,
+    status: STATUS_NEW,
+  });
+}
+
+/**
+ * create
+ * @param tableNumber
+ * @returns ID of order for this table
+ * creates new orderlist with status NEW for this table.
+ */
+export async function createOrderListForTable(tableNumber) {
+  if (!db) return null;
+  if (!tableNumber) return null;
+  console.log(`creating order for table ${tableNumber}`);
+  const newOrder = await createNewOrderList(tableNumber);
+  console.log(`orderForTableFromDb for table ${tableNumber}: ${newOrder.id}`);
+  return newOrder.id;
 }

@@ -44,6 +44,9 @@ export function OrderListProvider(props) {
             `tableNumber effect: table ${tableNumber} order ${orderId}`
           );
           setOrderId(orderId);
+        } else {
+          FirestoreService.createOrderListForTable(tableNumber);
+          setOrderId(orderId);
         }
       } catch (e) {
         console.log(`ERROR ${JSON.stringify(e)}`);
