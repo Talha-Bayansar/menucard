@@ -2,7 +2,7 @@ import React from "react";
 import ProductLine from "./ProductLine";
 import InfoBox from "../ui/InfoBox";
 import styled from "@emotion/styled";
-import { Favorite, Chat } from "@material-ui/icons";
+import { Favorite, Chat, AddShoppingCart } from "@material-ui/icons";
 import { useMessageContext } from "../contexts/MessageProvider";
 import { useActiveProductContext } from "../contexts/ActiveProductProvider";
 import { useFavoritesContext } from "../contexts/FavoritesProvider";
@@ -22,6 +22,7 @@ const StyledButton = styled.button`
   outline: none;
   padding: 10px;
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  margin-right: 1rem;
 
   &:hover {
     color: ${(props) => props.theme.colors.red};
@@ -87,6 +88,9 @@ function ProductInfoBox(props) {
           >
             <Favorite />
           </StyledButton>
+          <StyledButtonMessage>
+            <AddShoppingCart />
+          </StyledButtonMessage>
         </StyledDivButtons>
       </InfoBox>
     </>
