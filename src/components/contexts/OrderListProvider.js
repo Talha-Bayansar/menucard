@@ -79,13 +79,18 @@ export function OrderListProvider(props) {
     }
   }, [orderId, setOrderList]);
 
+  // useCallback(() => {
+  //   async function incrementProductInOrderList(product) {}
+  // }, [input]);
+
   const api = useMemo(
     () => ({
       tableNumber,
       setTableNumber,
       orderList,
+      orderId,
     }),
-    [tableNumber, setTableNumber, orderList]
+    [tableNumber, setTableNumber, orderList, orderId]
   );
 
   const orderListToPrint = orderList.map(

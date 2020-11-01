@@ -6,6 +6,7 @@ import { Favorite, Chat, AddShoppingCart } from "@material-ui/icons";
 import { useMessageContext } from "../contexts/MessageProvider";
 import { useActiveProductContext } from "../contexts/ActiveProductProvider";
 import { useFavoritesContext } from "../contexts/FavoritesProvider";
+import { useOrderListContext } from "../contexts/OrderListProvider";
 
 const StyledButton = styled.button`
   border-radius: 50%;
@@ -63,6 +64,7 @@ function ProductInfoBox(props) {
   const { setMessage } = useMessageContext();
   const { activeProduct, setActiveProduct } = useActiveProductContext();
   const { toggleProductIsFavorite, isFavorite } = useFavoritesContext();
+  const { tableNumber, orderId } = useOrderListContext();
   return (
     <>
       <InfoBox
@@ -88,7 +90,9 @@ function ProductInfoBox(props) {
           >
             <Favorite />
           </StyledButton>
-          <StyledButtonMessage>
+          <StyledButtonMessage
+            onClick={() => console.log(tableNumber + ":" + orderId)}
+          >
             <AddShoppingCart />
           </StyledButtonMessage>
         </StyledDivButtons>
